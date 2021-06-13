@@ -44,6 +44,11 @@ class TasksController < ApplicationController
     redirect_to tasks_url
   end
   
+  def index
+    @pagy, @tasks = pagy(Task.all, items: 8)
+  end
+
+  
   private
   
   def set_task
@@ -54,5 +59,6 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:content, :status)
   end
-
+  
+  
 end
